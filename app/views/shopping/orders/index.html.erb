@@ -1,0 +1,32 @@
+<div class="container">
+    <div class='row'>
+	<h3>Order Summary</h3>
+	 <div id='order-items-summary'>
+      <% i = 1 %>
+      <% @order.order_items.group_by(&:variant_id).each do |variant_id, items| %>
+        <div id='order-item-<%= i %>' class='panel'>
+          <%= render :partial => 'order_item', :locals => {:items => items } %>
+        </div>
+        <% i += 1 %>
+      <% end %>
+    </div>
+
+      <div>
+        <div>
+          <h5>Shipping Address</h5>
+          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+          <%= link_to 'Change address', shopping_addresses_path, :class => 'btn btn-success' %>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>Billing Address</h5>
+          <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.bill_address} %>
+          <%= link_to 'Change address', shopping_billing_addresses_path, :class => 'btn btn-success' %>
+        </div>
+      </div>
+    </div><hr>
+    <%= link_to "Complete Order",shopping_order_path(@order),:method => :put,class: 'btn btn-warning'%>
+  </div>
+	
+</div>

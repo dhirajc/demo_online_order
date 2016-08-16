@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  abbreviation: MyString
+  described_as: MyString
+  country_id: 
+  shipping_zone_id: 
+
+two:
+  name: MyString
+  abbreviation: MyString
+  described_as: MyString
+  country_id: 
+  shipping_zone_id: 

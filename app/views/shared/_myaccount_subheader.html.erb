@@ -1,0 +1,16 @@
+            <div class="row">
+              <div class="col-md-3 col-sm-3 hidden-xs">
+                <!-- inner navigation menu -->
+                <div class="navi">
+                  <!-- heading -->
+                  <h3>My Menu</h3>
+                  <!-- list -->
+                  <ul class="list-unstyled">
+                    <li><%= link_to '<i class="fa fa-user"></i> My Account'.html_safe, myaccount_overview_path() %></li>
+                    <li><%= link_to '<i class="fa fa-list-alt"></i>Address'.html_safe, myaccount_addresses_path() %></li>
+                    <li><%= link_to '<i class="fa fa-edit"></i>Edit Profile'.html_safe, edit_myaccount_overview_path(current_user) %></li>
+<!--                <li>
+                    <%#= link_to '<i class="fa fa-list-alt"></i> Order History'.html_safe, myaccount_addresses_path() %></li> -->
+                  </ul>
+                </div>
+              </div>

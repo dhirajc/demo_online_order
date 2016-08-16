@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  cart_id: 
+  quantity: 1
+  active: false
+  item_type_id: 
+
+two:
+  user_id: 
+  cart_id: 
+  quantity: 1
+  active: false
+  item_type_id: 

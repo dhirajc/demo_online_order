@@ -1,0 +1,18 @@
+ <div class="container">
+  <h3>Orders</h3>
+
+  <% unless @orders.length > 0 %>
+    <p>You currently do not have any orders.</p>
+  <% end %>
+
+  <% @orders.each do |order| %>
+    <div class='order-list-item ten'>
+      <ul>
+        <li><label>Number:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
+        <li><label>Amount:</label>        <%= number_to_currency( order.find_total ) %></li>
+        <li><label>Status:</label>        <%= order.state %></li>
+      </ul>
+    </div>
+    <hr/>
+  <% end %>
+</div>

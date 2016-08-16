@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_id: 
+  sku: MyString
+  name: MyString
+  price: 9.99
+  cost: 9.99
+  deleted_at: 2016-04-16 19:04:02
+  master: false
+  inventory_id: 
+
+two:
+  food_id: 
+  sku: MyString
+  name: MyString
+  price: 9.99
+  cost: 9.99
+  deleted_at: 2016-04-16 19:04:02
+  master: false
+  inventory_id: 

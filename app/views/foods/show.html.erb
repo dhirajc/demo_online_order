@@ -1,0 +1,152 @@
+<!-- Banner Start -->
+
+<div class="banner padd">
+	<div class="container">
+		<!-- Image -->
+		<%= image_tag 'crown-white.png',class: 'img-responsive'%>
+		<!-- Heading -->
+		<h2 class="white">Order Now</h2>
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="items.html">Shopping</a></li>
+			<li class="active">Order Now</li>
+		</ol>
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+
+<!-- Inner Content -->
+<div class="inner-page padd">
+
+	<!-- Single Item Start -->
+	
+	<div class="single-item">
+		<div class="container">
+			<!-- Shopping single item contents -->
+			<div class="single-item-content">
+				<div class="row">
+					<div class="col-md-4 col-sm-5">
+						<!-- Product image -->
+						<%= image_tag @food.food_image.url,class: "img-responsive"%>
+					</div>
+					<div class="col-md-8 col-sm-7">
+						<!-- Heading -->
+						<h3><%=@food.name%></h3>
+						<div class="row">
+							<div class="col-md-7 col-sm-12">
+								<!-- Single item details -->
+								<div class="item-details">
+									<!-- Paragraph -->
+									<p class="text-justify"><%= raw @food.description%></p>
+								</div>
+							</div>
+							<div class="col-md-5 col-sm-12"> 
+								<!-- Form inside table wrapper -->
+								<div class="table-responsive">
+									<!-- Ordering form -->
+             			<%= form_for  @cart_item,
+                            :url  => shopping_cart_items_path(@cart_item),
+                            :html => { :id => 'new_cart_item', :class => 'custom' } do |f| %>
+										<!-- Table -->
+										<%= f.hidden_field :variant_id %>
+										<table class="table table-bordered">
+											<tr>
+												<td>Price</td>
+												<td>Rs. <%= @food.price%></td>
+											</tr>
+											<tr>
+												<td>Shipping</td>
+												<% if @food.price < 99 %>
+												<td>Free</td>
+												<%else%>
+												<td>Rs. 50</td>
+												<%end%>
+											</tr>
+											<tr>
+												<td>Delivery Time</td>
+												<td><%= @food.prep_time%> Hours</td>
+											</tr>
+											<tr>
+												<td>Quantity</td>
+												<td><div class="form-group">
+													<%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => 'form-control input-sm'} %>
+												</div></td>
+											</tr>
+											<tr>
+												<td>Payment Mode</td>
+												<td><div class="form-group">
+													<select class="form-control input-sm">
+														<option>Cash on delivery</option>
+<!-- 																	<option>Credit Card</option>
+														<option>Debit Card</option> -->
+													</select>
+												</div></td>
+											</tr>
+											<tr>
+												<td>&nbsp;</td>
+												<td><div class="form-group">
+                      								<%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'btn btn-danger' %>                   
+												</div></td>
+											</tr>
+										</table>
+									<%end%><!--/ Table End-->
+								</div><!--/ Table responsive class end -->
+							</div>
+						</div><!--/ Inner row end  -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Single Item End -->
+
+	
+</div><!-- / Inner Page Content End -->	
+<script type="text/javascript">
+var Hadean = window.Hadean || { };
+if (typeof Hadean.Cart == "undefined") {
+    Hadean.Cart = {};
+}
+dd = null;
+if (typeof Hadean.Cart.newForm == "undefined") {
+  Hadean.Cart.newForm = {
+    newFormId : '#new_cart_item',
+    addToCart : true,
+
+    initialize      : function() {
+      jQuery('#submit_add_to_cart').click( function() {
+          if (jQuery('#cart_item_variant_id').val() == '' ) { // Select to see if variant is selected in hidden field
+            alert('Please click on a specific item to add.');
+          } else
+          if (Hadean.Cart.newForm.addToCart) {
+
+            Hadean.Cart.newForm.addToCart = false;// ensure no double clicking
+            jQuery(Hadean.Cart.newForm.newFormId).submit();
+
+          }
+        }
+      )
+      // This code is to change the color of the selected and non-selected variants
+      // jQuery('.variant_select').click( function() {
+
+      //     jQuery('.variant_properties').each( function(index, obj) {
+      //       jQuery(obj).removeClass('selected');
+      //     });
+
+      //     var propId = '#variant_properties_' + $(this).data("variant_id");
+      //   $( propId ).addClass('selected');
+      //     jQuery('#cart_item_variant_id').val($(this).data("variant_id"));
+      //     jQuery(".variant_select").removeClass('selected_variant');
+      //     jQuery(this).addClass('selected_variant');
+      //     //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
+      //   }
+      // );
+    }
+  };
+  jQuery(function() {
+    Hadean.Cart.newForm.initialize();
+  });
+};
+</script>

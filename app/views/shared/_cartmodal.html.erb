@@ -1,0 +1,44 @@
+		<!-- Shopping cart Modal -->
+		<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Shopping Cart</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Items table -->
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Quantity</th>
+									<th>Price</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+							<% if @cart_items %>
+								<% @cart_items.each do |food_id,qty|%>
+								<% food = Food.find(food_id)%>
+								<tr>
+									<%#= raise food.inspect%>
+									<td><a href="#"><%= food.name%></td>
+									<td><%= qty%></td>
+									<td>Rs. <%= food.price%></td>
+									<td>Rs. <%= food.price * qty %></td>
+								</tr>
+								<%end%>
+								<%end%>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						
+						<button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+						<%= link_to "Checkout",shopping_orders_path,class: 'btn btn-info'%>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- Model End -->

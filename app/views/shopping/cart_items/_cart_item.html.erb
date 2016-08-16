@@ -1,0 +1,22 @@
+<tr>
+  <td class="cart_product">
+    <%#= link_to (image_tag item.variant.food.food_image.url(:thumb)),food_path(item.variant.food)%>
+    <h4><a href=""><%= item.variant.food.name%></a></h4>
+  </td>
+
+  <td class="cart_price_<%=i.to_s%>">
+    <p><%=item.price%></p>
+  </td>
+
+  <td class="cart_quantity" field="<%= i %>">
+      <%= cart_items_form.number_field :quantity,size: '1', min: 1 ,class: 'cart_quantity_input'%>
+  </td>
+
+  <td class="total_price_<%=i.to_s%>">
+    <p><%=item.total%></p>
+  </td>
+
+  <td class="cart_delete">
+    <%= link_to '<i class="fa fa-times"></i>'.html_safe, shopping_cart_item_path(item, :variant_id => item.variant_id), :method => :delete ,class: 'cart_quantity_delete'%>
+  </td>
+</tr>

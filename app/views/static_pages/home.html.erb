@@ -1,0 +1,46 @@
+<%= render 'static_pages/slider'%>
+<!-- menu Start -->
+
+	<div class="menu padd">
+		<div class="container">
+			<!-- Default Heading -->
+			<div class="default-heading">
+			<!-- Crown image -->
+				<%= image_tag "crown.png",class: "img-responsive"%>
+				<!-- Heading -->
+				<h2>Menu</h2>
+				<!-- Paragraph -->
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<!-- Border -->
+				<div class="border"></div>
+			</div>
+				<!-- Menu content container -->
+			<div class="menu-container">
+				<div class="row">
+					<% @categories.each do |category|%>
+						<%if category.foods.first%>
+							<div class="col-md-4 col-sm-4">
+							<!-- Menu header -->
+								<div class="menu-head">
+								<!-- Image for menu item -->
+									<%= image_tag category.category_image.url,class: "img-responsive"%>
+									<!-- Menu title / Heading -->
+									<h3><%= link_to category.title,category_food_path(category)%></h3>
+									<!-- Border for above heading -->
+									<div class="title-border br-red"></div>
+								</div>
+								<!-- Menu item details -->
+								<div class="menu-details">
+
+								</div><!-- / Menu details end -->
+							</div>
+						<%end%>
+					<%end%>
+				</div>
+			</div> <!-- /Menu container end -->
+		</div>
+	</div>
+
+<!-- Menu End -->
+
+

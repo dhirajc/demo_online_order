@@ -1,0 +1,2 @@
+module Shopping::BillingAddressHelper
+end

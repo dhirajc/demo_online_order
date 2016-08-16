@@ -1,0 +1,100 @@
+  <div class="inner-page padd">
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!-- Checkout Start -->
+
+<div class="checkout">
+  <div class="container">
+  <!-- Heading -->
+    <div class="row">
+      <div class="col-md-7 col-sm-6">
+        <!-- Checkout Form -->
+          <div class="form-group">
+            <label for="inputName" class="col-md-2 control-label">FirstName</label>
+            <div class="col-md-8">
+              <%= f.text_field :first_name,class: 'form-control', placeholder: 'FirstName' %>
+            </div>
+          </div>            
+          <div class="form-group">
+            <label for="inputEmail1" class="col-md-2 control-label">LastName</label>
+            <div class="col-md-8">
+              <%= f.text_field :last_name,class: 'form-control', placeholder: 'LastName' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail1" class="col-md-2 control-label">City</label>
+            <div class="col-md-8">
+              <%= f.text_field :city,class: 'form-control', placeholder: 'City' %>
+            </div>
+          </div>
+          <div class="form-group">
+          <% if Settings.require_state_in_address %>
+            <%= f.label    :state_id, "State/Province",class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.select   :state_id, @states,
+                            {:include_blank => true, :prompt => "State"},class: 'form-control' %>
+            </div>                
+          <% elsif countries.size == 1 %>
+            <div class="field column">
+              <%= f.label :country_id, "Country",class: 'col-md-2 control-label' %>
+              <%= countries.first.name %>
+              <%= f.hidden_field   :country_id %>
+            </div>
+          <% else %>
+            <div class="field column">
+              <%= f.label    :country_id, "Country", class: 'col-md-2 control-label'  %>
+              <%= f.select   :country_id, select_countries,
+                            :include_blank => true,class: 'form-control' %>
+            </div>
+          <% end %>
+          </div>   
+          <div class="form-group">
+            <label for="inputAddress" class="col-md-2 control-label">Address1</label>
+            <div class="col-md-8">
+              <%= f.text_area :address1,class: 'form-control',placeholder: 'Address1',rows: '3' %>
+            </div>
+          </div>           
+          <div class="form-group">
+            <label for="inputAddress" class="col-md-2 control-label">Address2</label>
+            <div class="col-md-8">
+              <%= f.text_area :address2,class: 'form-control',placeholder: 'Address2' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputZip" class="col-md-2 control-label">Zip Code</label>
+            <div class="col-md-8">
+             <!--  <input type="text" class="form-control" id="inputZip" placeholder="Zip Code"> -->
+             <%= f.text_field :zip_code ,class: 'form-control',placeholder: 'Zip Code'%>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :default %> Make this my default shipping address
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+              <%= f.submit 'Confirm Order', :class => 'btn btn-danger btn-sm' %>&nbsp;
+              <button type="reset" class="btn btn-default btn-sm">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+<!-- Checkout End -->
+</div>

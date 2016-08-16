@@ -1,0 +1,58 @@
+<div class="inner-page padd">
+  <section id="cart_items">
+    <div class="container">
+      <% if  @cart_items.blank? && @saved_cart_items.empty? %>
+      <!-- Default Heading -->
+      <div class="default-heading">
+      <!-- Crown image -->
+        <%= image_tag "EmptyCart.jpg",class: "img-responsive"%>
+      <div>
+        <%= link_to "Order Food", root_path,class: 'btn btn-danger'%>
+      </div> 
+      </div>
+          
+      <% end %>
+      
+      <% unless @cart_items.blank? %>
+        <%= form_for session_cart, url: shopping_cart_item_path(session_cart), html: {class: 'form-group'}, :as => :cart do |cart_form| %>
+        <div class="table cart_info">
+          <table class="table table-condensed">
+          <thead>
+          <tr class="cart_menu">
+          <td class="image">Item</td>
+          <!-- <td class="description"></td> -->
+          <td class="price">Price</td>
+          <td class="quantity">Quantity</td>
+          <td class="total">Total</td>
+          <td></td>
+          </tr>
+          </thead>
+          <tbody>
+          <% @cart_items.each_with_index do |item, i| %>
+          <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
+          <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+          <% end %>
+          <% end %>
+          </tbody>
+          </table>
+        </div>
+          <% unless @cart_items.blank? %>
+            <%#= cart_form.submit 'update', :class => 'btn btn-danger' %>
+            <%= cart_form.submit 'Checkout', {:checkout => 1, :class => 'btn btn-primary'} %>
+            <div class="clear"></div>
+          <% end %>
+        <% end %>
+      <%end%>
+    </div>
+  </section> <!--/#cart_items-->
+</div>
+<script type="text/javascript">
+  
+
+$(document).on("click",".cart_quantity",function(){
+  fieldName = $(this).attr('field');
+  var a=$('#cart_shopping_cart_items_attributes_'+fieldName+'_quantity').val();
+  var price = $('.cart_price_'+fieldName).text();
+  $('.total_price_'+fieldName).text(price * a)
+});
+</script>

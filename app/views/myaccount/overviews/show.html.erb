@@ -1,0 +1,61 @@
+      <div class="main-content">
+        <div class="container">     
+          <!-- inner page content -->
+          <div class="inner-content">
+            <%= render 'shared/myaccount_subheader'%>
+              <div class="col-md-9 col-sm-9">
+                <!-- inner main content area -->
+                <div class="inner-main account">
+                  <!-- top heading -->
+                  <h2>My Account</h2>
+                  <!-- user image -->
+                  <%= image_tag  'chef/4',class: 'img-responsive user'%>
+                  <!-- user account details -->
+                  <div class="account-details">
+                    <!-- heading -->
+                    <h3><%= @user.firstname%> <%= @user.lastname%></h3>
+                    <!-- address -->
+                    <address>#98/5 New Avenue Street,<br>
+                    Near New Banglow,<br>
+                    New Delhi - 123545
+                    </address>
+                    <!-- phone number -->
+                    <span class="a-phone"><i class="fa fa-phone-square"></i>: +91 123 345 6565</span>
+                    <span class="a-phone"><i class="fa fa-envelope-o"></i>: <a href="#">brennan@example.com</a></span>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="table-responsive a-table">
+                    <!-- account purchase table -->
+                    <table class="table table-striped">
+                      <caption>My Recent Purchases</caption>
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>OrderID</th>
+                          <!-- <th>Name</th> -->
+                          <th>Amount</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <% @orders.each do |order|%>
+                      <%#= raise "dff"%>
+                        <tr>
+                          <td><%= order.updated_at%></td>
+                          <td><%=order.number%></td>
+                          <!-- <td>HTC Smart Phone</td> -->
+                          <td>Rs. <%=order.find_total%></td>
+                          <td><%= order.state%></td>
+                        </tr>   
+                      <%end%>                                           
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- inner page content end -->     
+        </div>
+      </div>
+      <!-- main content end

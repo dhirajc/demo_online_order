@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_id: 
+  shipping_method_id: 
+  address_id: 
+  tracking: MyString
+  number: MyString
+  state: MyString
+  shipped_at: MyString
+  active: false
+
+two:
+  order_id: 
+  shipping_method_id: 
+  address_id: 
+  tracking: MyString
+  number: MyString
+  state: MyString
+  shipped_at: MyString
+  active: false

@@ -1,0 +1,32 @@
+<!-- main content -->
+      <div class="main-content">
+        <div class="container"> 
+        
+          <!-- inner page content -->
+          <div class="inner-content">
+            <%= render 'shared/myaccount_subheader'%>
+              <div class="col-md-9 col-sm-9">
+                <!-- inner main content area -->
+                <div class="inner-main account">
+                  <!-- top heading -->
+                  <h2>Address</h2>
+                  <!-- profile edit form -->
+                  <%#= render 'myaccount/addresses/form'%>
+                  <p><%= link_to "New Address", new_myaccount_address_path, :class => 'btn btn-primary' %></p>
+                  <% for address in @addresses %>
+                  <div class="col-md-2 col-sm-6">
+                    <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => address } %><br />
+                    <%= link_to "Edit", edit_myaccount_address_path(address),class: 'btn btn-warning' %> |
+                    <%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete,class: 'btn btn-danger' %>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- inner page content end -->          
+        </div>
+      </div>
+      <!-- main content end -->
+
+

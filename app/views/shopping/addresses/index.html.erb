@@ -1,0 +1,31 @@
+<% if  @shopping_addresses.empty? %>
+<%= form_for @shopping_address, url: shopping_addresses_path, html: {class: 'form-horizontal'} do |address_form| %>
+  <%= render :partial =>  'form', :locals => {:f => address_form}  %>
+<% end %>
+<% else %>
+  <h3>Pick a Shipping Address</h3>
+<% end %>
+
+  <% @shopping_addresses.each do |shopping_address| %>
+     <div class="col-md-5 col-sm-6">
+    <!-- Checkout sidebar items -->
+       <div class="sidebar-item">
+          <i class="fa fa-truck br-green pull-right"></i>
+          <div class="clearfix"></div>
+        <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
+        <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'btn btn-primary', :method => :put %><br/>
+        
+        <%= link_to 'Edit', edit_shopping_address_path(shopping_address) ,class: 'btn btn-primary'%>
+        <%= link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete,class: 'btn btn-danger' %>
+    
+      </div>
+    </div>
+  <% end %>
+    </div>
+  </div>
+</div>
+  <% if session_order %>
+    <%= link_to 'Order Summary', shopping_orders_path, :class => 'btn btn-primary' %>
+  <% end %>
+<br />
+

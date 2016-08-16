@@ -1,0 +1,62 @@
+			<!-- Inner Content -->
+			<div class="inner-page padd">				
+				<!-- Shopping Start -->				
+				<div class="shopping">
+					<div class="container">
+						<!-- Shopping items content -->
+						<div class="shopping-content">
+							<div class="row">
+								<%# @products.each do |food|%>
+								<%#= will_paginate @products %>
+									<% @products.each do |food| %>
+									<% if food.active_variants.first %>
+										<div class="col-md-3 col-sm-6">
+											<!-- Shopping items -->
+											<div class="shopping-item">
+												<!-- Image -->
+												<%= image_tag food.food_image.url ,class: "img-responsive"%>
+												<!-- Shopping item name / Heading -->
+												<h4 class="pull-left"><%=food.name.truncate(20)%></h4>
+													<span class="item-price pull-right"><i class="fa fa-inr" aria-hidden="true"></i>
+													<%= food.price_range.first%></span>
+												<div class="clearfix"></div>
+												<!-- Paragraph -->
+												<p><%= raw food.short_description.truncate(180)%></p>
+												<!-- Buy now button -->
+												<div class="visible-xs">
+													<a class="btn btn-danger btn-sm" href="#">Buy Now</a>
+												</div>
+												<!-- Shopping item hover block & link -->
+												<div class="item-hover br-red hidden-xs"></div>
+												<!-- <a class="link hidden-xs" href="#">Add to cart</a> -->											
+												<% a = @cart_item.variant_id = food.active_variants.first.try(:id)%>
+												<%= link_to "Add to cart",shopping_cart_items_path(:variant_id => a,:quantity => '1'),class: "link hidden-xs", :method => :post%>
+											</div>
+										</div>
+									<%end%>
+								<%end%>
+							</div>
+
+							
+							<%#= will_paginate @products, renderer: BootstrapPagination::Rails %>
+							<!-- Pagination -->
+							<div class="shopping-pagination">
+								<div class="pagination">
+  								<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+							</div>
+
+								<!-- <ul class="pagination">
+									<%#= will_paginate @products %>
+									<li class="previous_page disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+
+									<li><a href="/foods/1/category?page=2" rel="next">2</a></li>
+									<li><a class="next_page" href="/foods/1/category?page=2" rel="next">&raquo;</a></li>
+								</ul> -->
+							</div> 
+							<!-- Pagination end-->
+						</div>
+					</div>
+				</div>
+				</div>
+				<!-- Shopping End -->

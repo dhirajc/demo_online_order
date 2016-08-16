@@ -1,0 +1,71 @@
+		<!-- Header End -->
+			
+			<!-- Banner Start -->
+			
+			<div class="banner padd">
+				<div class="container">
+					<!-- Image -->
+					<%= image_tag "crown-white.png", class: 'img-responsive'%>
+					<!-- Heading -->
+					<h2 class="white">My Profile</h2>
+					<ol class="breadcrumb">
+						<li><a href="index.html">Home</a></li>
+						<li class="active">My Profile</li>
+					</ol>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			
+			<!-- Banner End -->
+			
+			
+			
+			<!-- Inner Content -->
+			<div class="inner-page padd">
+			
+				<!-- Contact Us Start -->
+				
+				<div class="contactus">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<!-- Contact Us content -->
+								<div class="row">
+									<div class="col-md-6 col-sm-6">
+										<!-- Contact content details -->
+										<div class="contact-details">
+											<!-- Heading -->
+											<h4>First Name:</h4><!-- Address / Icon -->
+											<i class="fa fa-info br-red"></i> <span><%= @user.firstname%></span>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+
+									<div class="col-md-6 col-sm-6">
+										<!-- Contact content details -->
+										<div class="contact-details">
+											<!-- Heading -->
+											<h4>Last Name:</h4><!-- Address / Icon -->
+											<i class="fa fa-info br-red"></i> <span><%= @user.lastname%></span>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<!-- Contact content details -->
+										<div class="contact-details">
+											<!-- Heading -->
+											<h4>Email:</h4><!-- Address / Icon -->
+											<i class="fa fa-envelope-o br-red"></i> <span><%= @user.email %></span>
+											<div class="clearfix"></div>
+										</div>
+									</div>								
+								</div><!--/ Inner row end -->
+							<%=  link_to "Edit", edit_user_registration_path(@user),class: "btn btn-primary" %> |
+							<%=  link_to "Back", root_path,class: "btn btn-primary" %>  
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Contact Us End -->
